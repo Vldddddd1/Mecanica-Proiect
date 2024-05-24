@@ -217,19 +217,15 @@ public class MoleculeSampleApp extends Application {
         double angle1=0.0,angle2=0.0,angle3=0.0;
         for(double t = 0; t <= 5*o; t+=dt){
 
-            while(angle1>2*PI)angle1-=2*PI;
-            while(angle2>2*PI)angle2-=2*PI;
-            while(angle3>2*PI)angle3-=2*PI;
+            angle1=phi1+o*t;
+            angle2=phi2+o*t;
+            angle3=phi3+o*t;
 
             double x = ec(A1,angle1);
             double y = ec(A2,angle2);
             double z = ec(A3,angle3);
 
-            angle1+=phi1+((2*PI)/o)*dt;
-            angle2+=phi2+(2*PI)/o*dt;
-            angle3+=phi3+(2*PI)/o*dt;
-
-            miscare(x+t,0,z+t);
+            miscare(x,y,z);
         }
     }
 

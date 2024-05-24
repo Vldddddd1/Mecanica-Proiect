@@ -20,6 +20,7 @@ import java.io.InputStreamReader;
 import java.lang.ClassNotFoundException;
 
 import static java.awt.PageAttributes.MediaType.A1;
+import static java.lang.Math.PI;
 
 import moleculesampleapp.*;
 
@@ -32,6 +33,36 @@ public class MyFrame extends Application {
         Slider slider = new Slider();
         slider.setMin(0);
         slider.setMax(100);
+        slider.setValue(0);
+        sineparams[sineParamIndex] = defaultValue;
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
+        slider.setBlockIncrement(10);
+
+        slider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                valueLabel.setText("Value: " + newValue);
+                // FIX HERE
+                sineparams[sineParamIndex] = (Double) newValue;
+            }
+        });
+
+
+
+        VBox root = new VBox();
+        root.setSpacing(10);
+        root.getChildren().addAll(label, valueLabel, slider);
+
+        return root;
+    }
+
+    public VBox createSlider1(String labelText, Label valueLabel, Integer sineParamIndex, Double defaultValue) {
+        Label label = new Label(labelText);
+
+        Slider slider = new Slider();
+        slider.setMin(0);
+        slider.setMax(2*PI);
         slider.setValue(0);
         sineparams[sineParamIndex] = defaultValue;
         slider.setShowTickLabels(true);
@@ -158,7 +189,7 @@ public class MyFrame extends Application {
         for(int j = 0; j < 3; j++){
             Def[j] = new Label("Value: "+(0));
             String s = String.format("Defazaj"+(j+1));
-            root[j+3] = createSlider(s,Def[j], j+3,defPhiValues[j]);
+            root[j+3] = createSlider1(s,Def[j], j+3,defPhiValues[j]);
         }
 
         root[6] = createSlider("Pulsatie",Puls, 6, (double)60.0);
