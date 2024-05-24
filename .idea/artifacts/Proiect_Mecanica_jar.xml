@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="Proiect-Mecanica:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Proiect_Mecanica_jar</output-path>
+    <root id="root">
+      <element id="archive" name="Proiect-Mecanica.jar">
+        <element id="module-output" name="Proiect-Mecanica" />
+      </element>
+      <element id="library" level="application" name="javafx-swt" />
+    </root>
+  </artifact>
+</component>
