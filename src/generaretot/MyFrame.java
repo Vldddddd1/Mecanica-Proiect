@@ -9,8 +9,10 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.text.DecimalFormat;
+
 import static java.lang.Math.PI;
 
 
@@ -32,6 +34,7 @@ public class MyFrame extends Application {
         slider.valueProperty().addListener((_, _, newValue) -> {
             DecimalFormat df = new DecimalFormat("0.00");
             String formattedNumber = df.format(newValue);
+
             valueLabel.setText("Value: " + formattedNumber);
             sineparams[sineParamIndex] = (Double) newValue;
         });
@@ -55,11 +58,12 @@ public class MyFrame extends Application {
         sineparams[sineParamIndex] = defaultValue;
         slider.setShowTickLabels(true);
         slider.setShowTickMarks(true);
-        slider.setBlockIncrement(0.0001);
+        slider.setBlockIncrement(PI/4);
 
         slider.valueProperty().addListener((_, _, newValue) -> {
             DecimalFormat df = new DecimalFormat("0.0000");
             String formattedNumber = df.format(newValue);
+
             valueLabel.setText("Value: " + formattedNumber);
             sineparams[sineParamIndex] = (Double) newValue;
         });
@@ -78,7 +82,7 @@ public class MyFrame extends Application {
         Button buton = new Button(valueLabel);
 
         buton.setOnAction(_ -> {
-            
+
             GenerarePCT gen = new GenerarePCT(sineparams);
 
             gen.start(new Stage());
@@ -96,6 +100,7 @@ public class MyFrame extends Application {
     public void start(Stage stage) throws IOException {
 
         Label l = new Label(" ");
+
         new Label("Amplitudine 1");
         new Label("Amplitudine 2");
         new Label("Amplitudine 3");
@@ -106,6 +111,7 @@ public class MyFrame extends Application {
         Label[] A = new Label[3];
         Label[] Def = new Label[3];
         Label Puls = new Label("Value: "+(0));
+
         Double[] defAValues = { (double) 0, (double)0, (double) 0};
         for(int j = 0; j < 3; j++){
             A[j] = new Label("Value: "+(0));
